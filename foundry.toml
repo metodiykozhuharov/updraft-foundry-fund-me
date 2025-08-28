@@ -4,7 +4,7 @@ out = "out"
 libs = ["lib"]
 remappings = ["@chainlink/contracts=lib/chainlink-brownie-contracts/contracts/"]
 
-# Enable this if you want to use the `forge-ffi` feature
-ffi = false
+# Enable the following line to allow scripts to use `--ffi`
+#fs_permissions = [{ access = "read", path = "./broadcast" }]
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

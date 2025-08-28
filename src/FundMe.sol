@@ -20,8 +20,7 @@ contract FundMe {
     using PriceConverter for uint256;
 
     // State variables
-    uint256 public constant MINIMUM_USD = 5 * 10 ** 18;
-    // ***Fix
+    uint256 public constant MINIMUM_USD = 1 * 10 ** 18;
     address private immutable i_owner;
     address[] private s_funders;
     mapping(address => uint256) private s_addressToAmountFunded;
@@ -63,7 +62,6 @@ contract FundMe {
     }
 
     function withdraw() public onlyOwner {
-        // aderyn-ignore-next-line(storage-array-length-not-cached,costly-loop)
         for (
             uint256 funderIndex = 0;
             funderIndex < s_funders.length;
