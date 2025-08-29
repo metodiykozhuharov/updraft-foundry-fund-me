@@ -83,6 +83,7 @@ contract FundMeTest is Test {
         uint160 startingFundersIndex = 1;
 
         for (uint160 i = startingFundersIndex; i < numberOffunders; i++) {
+            // Simulate a different user funding the contract and funding it
             hoax(address(i), SEND_VALUE);
             fundMe.fund{value: SEND_VALUE}();
         }
@@ -120,6 +121,7 @@ contract FundMeTest is Test {
 
         // Act
         vm.startPrank(fundMe.getOwner());
+        // Call the cheaper withdraw function
         fundMe.cheaperWithdraw();
         vm.stopPrank();
 
