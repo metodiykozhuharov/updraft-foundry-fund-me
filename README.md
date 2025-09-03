@@ -1,12 +1,12 @@
 # Foundry Fund Me
 
-This is a Project based on the Cyfrin Solidity Course.
-
 *[⭐️ Updraft | Foundry Fund Me](https://updraft.cyfrin.io/courses/foundry/foundry-fund-me/fund-me-project-setup)*
 
 # About
 
 This is a minimal project allowing users to fund the contract owner with donations. The smart contract accepts ETH as donations, denominated in USD. Donations have a minimal USD value, otherwise they are rejected. The value is priced using a Chainlink price feed, and the smart contract keeps track of doners in case they are to be rewarded in the future.
+
+⚠️ This is an educational project, and the code is adapted from course materials for learning purposes.
 
 ## 🔍 Proof of Execution (Sepolia)
 Contract deployed, verified, funded & withdrawn on Sepolia:
@@ -22,35 +22,28 @@ cd updraft-foundry-fund-me
 
 ### ⚙️ Install Dependencies
 ```bash
-# Install forge-std (Foundry standard library)
-forge install foundry-rs/forge-std
-
-# Install Chainlink contracts (Brownie version)
-forge install smartcontractkit/chainlink-brownie-contracts@1.3.0
-
-# Install Foundry DevOps tools
-forge install Cyfrin/foundry-devops
+# Install all at once
+make install
 ```
-⚠️ You can replace 1.3.0 with the latest release tag for the Chainlink contracts if needed.
 
-lib/ will be automatically populated.
 
 ### 🌐 Environment Variables
 Create a .env file in the project root:
-```env
+```ini
 # Local network (Anvil)
 LOC_PRIVATE_KEY=<one of Anvil keys>
 LOC_RPC_URL=http://127.0.0.1:8545
 
 # Sepolia test network
-SEPOLIA_PRIVATE_KEY=<your Sepolia test account private key>
-SEPOLIA_RPC_URL=<RPC URL of the Sepolia node you're working with, e.g., from Alchemy>
+SEPOLIA_RPC_URL=<RPC URL of the Sepolia node you are working with, e.g., from Alchemy>
 ETHERSCAN_API_KEY=<your Etherscan API key>
 ```
 ⚠️ Important: do not commit .env to git. Always use test accounts / fake ETH for local and Sepolia testing.
 
 ### 🏗️ Deploy & Interact (Makefile Commands)
-Local Network
+
+**Local Network**
+
 ```bash
 # Deploy FundMe locally
 make deploy-local
@@ -61,7 +54,12 @@ make interact-local-fund
 # Withdraw funds locally
 make interact-local-withdraw
 ```
-Sepolia Testnet
+**Sepolia Testnet**
+
+Import your wallet:
+```bash
+cast wallet import my-sepolia-account --interactive
+```
 ```bash
 # Deploy & verify on Sepolia
 make deploy-sepolia
@@ -72,12 +70,6 @@ make interact-sepolia-fund
 # Withdraw funds on Sepolia
 make interact-sepolia-withdraw
 ```
-⚠️ To run interaction scripts, enable FFI in foundry.toml by uncommenting:
-```toml
-# Enable the following line to allow scripts to use `--ffi`
-# fs_permissions = [{ access = "read", path = "./broadcast" }]
-```
-
 ### 🧪 Build & Test
 ```bash
 # Compile contracts
